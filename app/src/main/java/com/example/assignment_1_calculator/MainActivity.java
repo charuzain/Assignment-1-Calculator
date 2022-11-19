@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -29,6 +30,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button clearButton ;
 
     TextView displayText;
+
+    Boolean isOperand = true;
+
+    String displayString = "";
+
 
 
     @Override
@@ -56,7 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        equalToButton = (Button) findViewById(R.id.button_equal);
        clearButton = (Button) findViewById(R.id.button_clear);
 
-       displayText = (TextView) findViewById(R.id.result);
+       displayText = findViewById(R.id.result);
+
 
 
         numOneButton.setOnClickListener(this);
@@ -78,62 +85,86 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
          equalToButton.setOnClickListener(this);
          clearButton.setOnClickListener(this);
 
-
-
-
-
-
-
-
     }
 
     @Override
     public void onClick(View view) {
+
         switch (view.getId()){
             case R.id.button_one:
-                displayText.setText("1");
+                addNumToDisplayText("1" , isOperand);
+
                 break;
             case R.id.button_two:
-                displayText.setText("2");
+                addNumToDisplayText("2" , isOperand);
                 break;
             case R.id.button_three:
-                displayText.setText("3");
+                addNumToDisplayText("3" , isOperand);
                 break;
             case R.id.button_four:
-                displayText.setText("4");
+                addNumToDisplayText("4" , isOperand);
                 break;
             case R.id.button_five:
-                displayText.setText("5");
+                addNumToDisplayText("5" , isOperand);
                 break;
             case R.id.button_six:
-                displayText.setText("6");
+                addNumToDisplayText("6" , isOperand);
                 break;
             case R.id.button_seven:
-                displayText.setText("7");
+                addNumToDisplayText("7" , isOperand);
                 break;
             case R.id.button_eight:
-                displayText.setText("8");
+                addNumToDisplayText("8" , isOperand);
                 break;
             case R.id.button_nine:
-                displayText.setText("9");
+                addNumToDisplayText("9" , isOperand);
                 break;
             case R.id.button_zero:
-                displayText.setText("0");
+                addNumToDisplayText("0" , isOperand);
                 break;
             case R.id.button_plus:
-                displayText.setText("+");
+                addOperatorToDisplayText("+" , isOperand);
                 break;
             case R.id.button_minus:
-                displayText.setText("-");
+                addOperatorToDisplayText("-" , isOperand);
                 break;
             case R.id.button_multiply:
-                displayText.setText("*");
+                addOperatorToDisplayText("*" , isOperand);
                 break;
             case R.id.button_divide:
-                displayText.setText("/");
+                addOperatorToDisplayText("/" , isOperand);
+                break;
+            case R.id.button_clear:
+                isOperand = true;
+                displayString = " ";
+                displayText.setText(displayString);
                 break;
 
+        }
 
+    }
+
+    void addNumToDisplayText(String a , boolean isNumber){
+        if(isNumber){
+            displayString = displayString + a;
+            displayText.setText(displayString);
+            isOperand = false;
+        }
+        else{
+            Toast.makeText(this, "Enter a operator", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    void addOperatorToDisplayText(String a , boolean isOperator){
+        if(!isOperator){
+            displayString = displayString + a;
+            displayText.setText(displayString);
+            isOperand = true;
+
+        }
+        else{
+            Toast.makeText(this, "Enter a number first", Toast.LENGTH_SHORT).show();
         }
 
     }
