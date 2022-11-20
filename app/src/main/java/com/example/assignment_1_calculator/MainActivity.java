@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     Button numOneButton ;
@@ -34,6 +36,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Boolean isOperand = true;
 
     String displayString = "";
+
+    ArrayList<String> user_values;
+    Calculator calculator;
+
 
 
 
@@ -84,6 +90,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
          equalToButton.setOnClickListener(this);
          clearButton.setOnClickListener(this);
+
+        calculator = new Calculator();
+        user_values = new ArrayList<String>();
 
     }
 
@@ -137,6 +146,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button_clear:
                 isOperand = true;
                 displayString = " ";
+                user_values = new ArrayList<>();
+                displayText.setText(displayString);
+                break;
+            case R.id.button_equal:
+                int answer = calculator.calculate(user_values);
+                displayString = displayString + "=" + answer;
                 displayText.setText(displayString);
                 break;
 
@@ -144,8 +159,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+
+
     void addNumToDisplayText(String a , boolean isNumber){
         if(isNumber){
+            user_values.add(a);
             displayString = displayString + a;
             displayText.setText(displayString);
             isOperand = false;
@@ -158,10 +176,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     void addOperatorToDisplayText(String a , boolean isOperator){
         if(!isOperator){
+            user_values.add(a);
             displayString = displayString + a;
             displayText.setText(displayString);
             isOperand = true;
-
         }
         else{
             Toast.makeText(this, "Enter a number first", Toast.LENGTH_SHORT).show();

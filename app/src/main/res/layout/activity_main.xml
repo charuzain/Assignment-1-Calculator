@@ -16,7 +16,6 @@
         android:layout_height="0dp"
         android:text="Hello World!"
         android:textSize="30sp"
-
         android:layout_weight="0.7"
        />
 
