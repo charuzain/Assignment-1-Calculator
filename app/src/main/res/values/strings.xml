@@ -16,4 +16,6 @@
     <string name="_3">3</string>
     <string name="_2">2</string>
     <string name="_1">1</string>
+    <string name="advance_with_history">Advance-With History</string>
+    <string name="standard_no_history">Standard-No History</string>
 </resources>

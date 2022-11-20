@@ -204,5 +204,39 @@
             style="?android:attr/buttonBarButtonStyle" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/advanced_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/advance_with_history"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:backgroundTint="@color/LightSkyBlue"
+        android:textColor="@color/black"
+        />
+    <Button
+        android:visibility="gone"
+        android:id="@+id/standard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/standard_no_history"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:backgroundTint="@color/LightSkyBlue"
+        android:textColor="@color/black"
+        />
+    
+    <TextView
+        android:id="@+id/history_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        />
+
+
 
 </LinearLayout>
