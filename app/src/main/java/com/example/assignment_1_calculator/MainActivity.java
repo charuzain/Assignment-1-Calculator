@@ -30,14 +30,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Button equalToButton ;
     Button clearButton ;
+    Button advancedButton;
+    Button standardButton;
 
     TextView displayText;
+    TextView history;
 
     Boolean isOperand = true;
+
 
     String displayString = "";
 
     ArrayList<String> user_values;
+
     Calculator calculator;
 
 
@@ -67,8 +72,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
        equalToButton = (Button) findViewById(R.id.button_equal);
        clearButton = (Button) findViewById(R.id.button_clear);
+       advancedButton = findViewById(R.id.advanced_button);
+       standardButton = findViewById(R.id.standard);
+
 
        displayText = findViewById(R.id.result);
+       history = findViewById(R.id.history_text);
 
 
 
@@ -90,9 +99,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
          equalToButton.setOnClickListener(this);
          clearButton.setOnClickListener(this);
+        advancedButton.setOnClickListener(this);
+        standardButton.setOnClickListener(this);
+        history.setOnClickListener(this);
+
 
         calculator = new Calculator();
-        user_values = new ArrayList<String>();
+        user_values = new ArrayList<>();
 
     }
 
@@ -148,12 +161,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 displayString = " ";
                 user_values = new ArrayList<>();
                 displayText.setText(displayString);
+
                 break;
             case R.id.button_equal:
                 int answer = calculator.calculate(user_values);
                 displayString = displayString + "=" + answer;
                 displayText.setText(displayString);
+                if(standardButton.getVisibility() == View.VISIBLE){
+                    String show_text = displayText.getText().toString();
+//                    Toast.makeText(MainActivity.this, display_text, Toast.LENGTH_SHORT).show();
+                    history.setText(history.getText().toString() +"\n" + show_text);
+                }
                 break;
+            case R.id.advanced_button:
+                advancedButton.setVisibility(View.GONE);
+                standardButton.setVisibility(View.VISIBLE);
+                history.setText("");
+                break;
+            case R.id.standard:
+                advancedButton.setVisibility(View.VISIBLE);
+                standardButton.setVisibility(View.GONE);
+                history.setText("");
+                break;
+
 
         }
 
